@@ -16,32 +16,24 @@ if (isset($_POST['submit']) {
   $txt = "You have recieved an e-mail from ".$InputName.".\n\n".$InputMessage;
 
   $mail = new PHPMailer();
-  //$mail->isSMTP();
-  $mail->Host = 'smtp.gmail.com';
-  $mail->Port = '587';
+  $mail->isSMTP();
   $mail->SMTPAuth=true;
   $mail->SMTPSecure = 'tls';
-
+  $mail->Host = 'smtp.gmail.com';
+  $mail->Port = '587';
   $mail->isHTML(true);
   $mail->Username = 'AmirMathiasenPortfolioWebsite@gmail.com';
   $mail->Password = 'kc9aqj5391';
-
   $mail->setFrom($InputEmail,$headers);
+  $mail->Subject = $InputSubject;
+  $mail->Body = $txt;
   $mail->addAddress('amirmathiasen@gmail.com');
   $mail->addReplyTo($InputEmail);
 
-  $mail->Subject = $InputSubject;
-  $mail->Body = $txt;
-
-  if (!$mail->send()) {
-    echo "Message could not be sent!";
-  }
-  else {
-    echo "Message has been sent!";
-  }
+  $mail->Send()
 
   //mail($mailTo, $InputSubject, $txt, $headers);
-  header("Location: contact?mailsend");
+  //header("Location: contact?mailsend");
 }
 
 ?>
