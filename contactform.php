@@ -21,14 +21,14 @@ if (isset($_POST['submit']) {
   $mail->SMTPSecure = 'tls';
   $mail->Host = 'smtp.gmail.com';
   $mail->Port = '587';
-  $mail->isHTML(true);
   $mail->Username = 'AmirMathiasenPortfolioWebsite@gmail.com';
   $mail->Password = 'kc9aqj5391';
   $mail->setFrom($InputEmail,$headers);
-  $mail->Subject = $InputSubject;
-  $mail->Body = $txt;
   $mail->addAddress('amirmathiasen@gmail.com');
   $mail->addReplyTo($InputEmail);
+  $mail->isHTML();
+  $mail->Subject = $InputSubject;
+  $mail->Body = $txt;
 
   $mail->Send()
 
